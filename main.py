@@ -10,8 +10,8 @@ import time
 import google.generativeai as genai
 import os
 
-EMAIL = "yashjain200502@gmail.com"
-PASSWORD = "Gunjan$1"
+EMAIL = ""
+PASSWORD = ""
 TARGET = "soham-sharma"   # linkedin.com/in/<this>
 
 options = Options()
