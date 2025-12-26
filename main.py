@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 import time
+import google.generativeai as genai
+import os
 
 EMAIL = "yashjain200502@gmail.com"
 PASSWORD = "Gunjan$1"
@@ -87,3 +89,31 @@ doc.build(story)
 print("\nPDF Generated → linkedin_summary.pdf")
 
 driver.quit()
+
+
+
+genai.configure(api_key="AIzaSyBNHcRf3SrScjyxOhzEaYHefk1ROlT2h3Q")
+
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+prompt = f"""
+You are a LinkedIn profile reviewer.
+
+Review the following headline and about section and give:
+1. 3 headline improvement suggestions
+2. 3 about section improvement suggestions
+3. One rewritten headline
+4. One rewritten about section
+
+Headline:
+{name} - {headline}
+
+About:
+{about}
+"""
+
+response = model.generate_content(prompt)
+
+print("\n------ GEMINI PROFILE REVIEW ------\n")
+print(response.text)
+
